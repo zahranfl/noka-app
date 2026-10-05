@@ -17,16 +17,13 @@ export function getUserFacingError(error, fallback = SYSTEM_ERROR_MESSAGE) {
     error instanceof TypeError ||
     /failed to fetch|fetch failed|networkerror|backend sedang tidak tersedia/i.test(message)
   ) {
-    return 'Tidak dapat terhubung ke server. Periksa koneksi atau coba lagi nanti.'
+    return 'Tidak dapat terhubung ke server. Periksa koneksi internet atau coba lagi.'
   }
   if (status === 401 || status === 403) {
     return 'Sesi login tidak valid atau telah berakhir. Silakan login kembali.'
   }
-  if (status >= 500 || TECHNICAL_MESSAGE.test(message)) {
-    return fallback
-  }
   if (status === 422 || /field required|input should|validation error|body ->/i.test(message)) {
-    return 'Data yang dikirim belum sesuai. Periksa kembali isian transaksi.'
+    return 'Data yang dikirim belum sesuai. Periksa kembali isian.'
   }
 
   return message || fallback
