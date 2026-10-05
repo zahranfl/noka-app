@@ -70,9 +70,9 @@ function Otp() {
           Masukkan 4 digit kode OTP yang dikirim ke email Anda<br />
           <b>{email || 'Email tidak tersedia'}</b>
         </p>
-        {import.meta.env.DEV && state?.developmentOtp && (
+        {state?.developmentOtp && (
           <p className="otp-development-code">
-            OTP pengujian: <b>{state.developmentOtp}</b>
+            Kode OTP: <b>{state.developmentOtp}</b>
           </p>
         )}
         <div className="otp" onPaste={paste}>

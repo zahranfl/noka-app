@@ -1,6 +1,6 @@
 import { getAuthSession } from '../utils/authSession'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || import.meta.env.VITE_API_BASE_URL || 'https://noka-backend-production-847d.up.railway.app'
 
 async function readResponse(response) {
   const contentType = response.headers.get('content-type') || ''
@@ -14,7 +14,7 @@ async function readResponse(response) {
     }
 
     const detail = typeof body === 'object'
-      ? body.detail || body.message
+      ? body.detail || body.message || body.error
       : body
     const message = Array.isArray(detail)
       ? detail.map((item) => item.msg).filter(Boolean).join(' ')
@@ -26,6 +26,14 @@ async function readResponse(response) {
 
   if (!body || typeof body !== 'object') {
     throw new Error('Backend mengirim respons yang tidak valid.')
+  }
+
+  if (body.error) {
+    const errText = String(body.error)
+    if (errText.includes('UNIQUE constraint failed: users.email')) {
+      throw new Error('Email sudah terdaftar. Silakan gunakan email lain atau masuk.')
+    }
+    throw new Error(errText)
   }
 
   return body

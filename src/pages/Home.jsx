@@ -5,6 +5,18 @@ import Logo from "../components/Logo";
 import { ZapIcon, ChartIcon, ShieldIcon, MicIcon } from "../components/Icons";
 import "./Home.css";
 
+import { useEffect } from "react";
+
+function Home() {
+  useEffect(() => {
+    // Ini akan muncul di console setiap kali Home dimount
+    console.log("🛠️  Backend URL :", import.meta.env.VITE_BACKEND_URL);
+  }, []);
+
+  /* … existing JSX … */
+}
+export default Home;
+
 const langkah = [
   "Daftar akun dengan nama usaha dan email.",
   'Tekan tombol mic lalu ucapkan transaksi, misal "jual nasi goreng 25 porsi 375 ribu".',
