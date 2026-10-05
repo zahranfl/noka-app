@@ -29,7 +29,7 @@ function SignUp() {
         state: {
           email: result.email || form.email.trim(),
           from: 'register',
-          ...(result.otp ? { developmentOtp: String(result.otp) } : {}),
+          ...(import.meta.env.DEV && result.otp ? { developmentOtp: String(result.otp) } : {}),
         },
       })
     } catch (registrationError) {
