@@ -1,0 +1,151 @@
+.home {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.home-nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+  padding: 10px 20px;
+  background: var(--green);
+}
+
+.home-content {
+  flex: 1;
+  padding: 18px 16px 24px;
+}
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+  padding: 28px 22px;
+  border-radius: 14px;
+  background-color: #cdeee2;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.87) 48%, rgba(255, 255, 255, 0.25) 100%),
+    url('../assets/hero-bg.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.eyebrow {
+  margin-bottom: 10px;
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.home-hero h1 {
+  max-width: 340px;
+  font-size: clamp(27px, 7vw, 36px);
+  line-height: 1.28;
+  letter-spacing: -0.04em;
+}
+
+.home-hero h1 span {
+  color: var(--green-strong);
+}
+
+.lead {
+  max-width: 340px;
+  margin-top: 14px;
+  color: #333b39;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.hero-cta {
+  align-self: flex-start;
+  min-height: 46px;
+  margin-top: 20px;
+}
+
+.glass {
+  margin-top: 16px;
+  padding: 20px;
+  border: 1px solid rgba(15, 118, 110, 0.08);
+  border-radius: 12px;
+  background: #f5f7fb;
+}
+
+.section-heading {
+  margin-bottom: 16px;
+}
+
+.section-heading h3,
+.glass h3 {
+  margin-top: 3px;
+  font-size: 19px;
+}
+
+.steps {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+}
+
+.steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #343a45;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.num {
+  display: inline-flex;
+  flex: 0 0 28px;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.17);
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-height: 124px;
+  padding: 14px;
+  border-radius: 9px;
+  background: #fff;
+  font-size: 13px;
+}
+
+.feature .ico {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: 2px;
+  border-radius: 9px;
+  background: rgba(16, 185, 129, 0.14);
+  color: var(--teal);
+}
+
+.feature .muted {
+  font-size: 12px;
+  line-height: 1.5;
+}

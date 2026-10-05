@@ -1,0 +1,147 @@
+.table-scroll-hint {
+  margin: 0 0 8px;
+  color: #4c5260;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.transactions-notice {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.transactions-error {
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid #f1c7aa;
+  border-radius: 10px;
+  background: #fff8f2;
+  color: #7c2d12;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.transactions-error .btn {
+  margin-top: 8px;
+}
+
+.transaction-description {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.table-wrap {
+  max-width: 100%;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--teal) #eceef6;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrap:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.5);
+  outline-offset: 3px;
+}
+
+.cash-table {
+  width: 100%;
+  min-width: 750px;
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+.cash-column-date {
+  width: 102px;
+}
+
+.cash-column-description {
+  width: 150px;
+}
+
+.cash-column-category {
+  width: 128px;
+}
+
+.cash-column-amount {
+  width: 122px;
+}
+
+.cash-column-balance {
+  width: 120px;
+}
+
+.cash-table th,
+.cash-table td {
+  padding: 12px 10px;
+  line-height: 1.5;
+}
+
+.cash-table th {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.cash-table .pinned-date,
+.cash-table .pinned-description {
+  position: sticky;
+  z-index: 2;
+  background: #fff;
+}
+
+.cash-table thead .pinned-date,
+.cash-table thead .pinned-description {
+  z-index: 4;
+  background: #f3f4f7;
+}
+
+.cash-table .pinned-date {
+  left: 0;
+}
+
+.cash-table .pinned-description {
+  left: 102px;
+  box-shadow: 4px 0 6px -5px rgba(0, 0, 0, 0.35);
+}
+
+.cash-table tbody tr:nth-child(even) .pinned-date,
+.cash-table tbody tr:nth-child(even) .pinned-description {
+  background: #f8f9fb;
+}
+
+.cash-table .amount-cell,
+.cash-table .balance-cell {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.cash-table .balance-cell {
+  font-weight: 600;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 360px) {
+  .cash-column-date {
+    width: 94px;
+  }
+
+  .cash-column-description {
+    width: 138px;
+  }
+
+  .cash-table .pinned-description {
+    left: 94px;
+  }
+}

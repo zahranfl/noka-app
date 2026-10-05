@@ -1,0 +1,32 @@
+.transaction-modal .field {
+  margin-top: 16px;
+}
+
+.transaction-modal .field label {
+  color: #3f4652;
+  font-size: 13px;
+}
+
+.transaction-modal .field input,
+.transaction-modal .field select {
+  min-height: 48px;
+  padding: 11px 14px;
+  font-size: 13px;
+}
+
+.transaction-modal .field select {
+  padding-right: 42px;
+}
+
+.transaction-modal .row {
+  margin-top: 18px;
+}
+
+.transaction-save-error {
+  margin-top: 12px;
+}
+
+.transaction-modal .row > .btn {
+  min-height: 48px;
+  font-size: 14px;
+}

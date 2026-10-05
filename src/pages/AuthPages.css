@@ -1,0 +1,98 @@
+.login-reset-link {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.login-error {
+  margin-top: 12px;
+}
+
+.auth-success {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #e9f8f0;
+  color: #075e43;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.login-signup-prompt {
+  margin-top: 60px;
+  font-size: 14px;
+}
+
+.otp-instructions {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.otp-page .back {
+  display: flex;
+  margin-right: auto;
+}
+
+.otp-development-code {
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff8e1;
+  color: #713f12;
+  font-size: 13px;
+}
+
+.otp {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.otp input {
+  width: 52px;
+  height: 52px;
+  border: 1px solid #e0e3eb;
+  border-radius: 9px;
+  outline: none;
+  background: #eceef6;
+  font-size: 21px;
+  text-align: center;
+}
+
+.otp input:focus {
+  border-color: var(--green-strong);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+}
+
+.otp-submit:disabled {
+  opacity: 0.6;
+}
+
+.reset-actions {
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.reset-actions > .btn {
+  flex: none;
+}
+
+.reset-new-password {
+  padding-top: 80px;
+}
+
+.reset-title {
+  font-size: 24px;
+}
+
+.reset-description {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.reset-submit,
+.signup-submit {
+  margin-top: 24px;
+}

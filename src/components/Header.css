@@ -1,0 +1,41 @@
+.header-account {
+  position: relative;
+}
+
+.header-account-trigger {
+  min-height: 40px;
+  cursor: pointer;
+}
+
+.header-account-menu {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 150px;
+  padding: 6px;
+  border: 1px solid #e0e3eb;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+}
+
+.header-account-menu button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+}
+
+.header-account-menu button:hover,
+.header-account-menu button:focus-visible {
+  background: #f3f4f7;
+}
