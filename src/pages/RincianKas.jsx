@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
-import { ChevronLeft } from "../components/Icons";
+import { ChevronLeft, DownloadIcon } from "../components/Icons";
 import { MODAL_AWAL, useTransaksi } from "../context/TransaksiContext";
 import { getAuthSession } from "../utils/authSession";
+import { exportRincianKasToExcel } from "../utils/exportExcel";
 import "./RincianKas.css";
 
 const formatTgl = (iso) => {
@@ -38,16 +39,36 @@ function RincianKas() {
     );
   const urut = saldoTransaksi.reverse();
 
+  const handleExport = () => {
+    if (!urut.length) return;
+    exportRincianKasToExcel(urut, session?.nama);
+  };
+
   return (
     <>
       <Header title="Dashboard" tag={`Hi, ${session?.nama || "Pengguna"}`} />
       <div className="content">
-        <div className="back-pill">
-          <button onClick={() => navigate("/dashboard")} aria-label="Kembali">
-            <ChevronLeft size={18} />
-          </button>
-          Rincian kas
+        <div className="rincian-header-bar">
+          <div className="back-pill">
+            <button onClick={() => navigate("/dashboard")} aria-label="Kembali">
+              <ChevronLeft size={18} />
+            </button>
+            Rincian kas
+          </div>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="btn-export"
+            onClick={handleExport}
+            disabled={loading || urut.length === 0}
+            title={urut.length === 0 ? "Belum ada transaksi untuk diekspor" : "Ekspor data ke Excel"}
+          >
+            <DownloadIcon size={16} />
+            <span>Ekspor Excel</span>
+          </Button>
         </div>
+
 
         {loading && <p className="small transactions-notice" role="status">Memuat rincian kas...</p>}
         {error && (

@@ -355,3 +355,37 @@ export async function processVoiceAudio(audioBlob, filename) {
     },
   };
 }
+
+export async function processTextWithGemini(text) {
+  const body = await requestWithQuery("/test-gemini", { text }, "POST");
+  const jumlah = Number(body.jumlah);
+  const jenis = body.jenis?.toLocaleLowerCase("id-ID");
+  const tipe =
+    jenis === "pemasukan" || jenis === "masuk"
+      ? "masuk"
+      : jenis === "pengeluaran" || jenis === "keluar"
+        ? "keluar"
+        : "masuk";
+  const keterangan =
+    typeof body.keterangan === "string" && body.keterangan.trim()
+      ? body.keterangan.trim()
+      : text;
+  const kategori =
+    typeof body.kategori === "string" ? body.kategori.trim() : "Penjualan";
+
+  if (!Number.isFinite(jumlah) || jumlah <= 0) {
+    throw new Error(
+      "Jumlah transaksi tidak terdeteksi dari suara. Sebutkan nominalnya dengan jelas.",
+    );
+  }
+
+  return {
+    transcript: text,
+    transaction: {
+      tipe,
+      jumlah,
+      kategori: normalizeVoiceCategory(kategori, `${text} ${keterangan}`),
+      keterangan,
+    },
+  };
+}
