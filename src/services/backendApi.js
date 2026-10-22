@@ -3,7 +3,7 @@ import { getAuthSession } from "../utils/authSession";
 const API_BASE_URL =
   import.meta.env.VITE_BACKEND_URL ||
   import.meta.env.VITE_API_BASE_URL ||
-  "https://noka-backend-production-847d.up.railway.app";
+  "https://noka-backend-production-72df.up.railway.app";
 
 async function readResponse(response) {
   const contentType = response.headers.get("content-type") || "";
