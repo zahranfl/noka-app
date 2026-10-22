@@ -37,6 +37,13 @@ function TransaksiModal({ mode, initial, onClose, onSave }) {
   const isVerif = mode === "verifikasi";
   const locked = isVerif && !editing;
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
+  const handleJumlahChange = (e) => {
+    // Hapus titik, koma, spasi agar jika user ketik 30.000 otomatis menjadi 30000
+    const raw = e.target.value.replace(/[.,\s]/g, "");
+    if (/^\d*$/.test(raw)) {
+      setForm((f) => ({ ...f, jumlah: raw }));
+    }
+  };
   const title = isVerif && editing ? "Edit transaksi" : judul[mode];
   const kategoriTersedia = Array.from(
     new Map(
@@ -63,7 +70,8 @@ function TransaksiModal({ mode, initial, onClose, onSave }) {
     setSaving(true);
     setError("");
     try {
-      await onSave({ ...form, kategori, jumlah: Number(form.jumlah) || 0 });
+      const cleanJumlah = Number(String(form.jumlah).replace(/[.,\s]/g, "")) || 0;
+      await onSave({ ...form, kategori, jumlah: cleanJumlah });
     } catch (saveError) {
       logApiError("Penyimpanan transaksi gagal", saveError);
       setError(getUserFacingError(saveError));
@@ -111,11 +119,11 @@ function TransaksiModal({ mode, initial, onClose, onSave }) {
         />
         <Input
           label="Jumlah (Rp)"
-          type="number"
-          min="0"
-          placeholder="Input"
+          type="text"
+          inputMode="numeric"
+          placeholder="Contoh: 30000"
           value={form.jumlah}
-          onChange={set("jumlah")}
+          onChange={handleJumlahChange}
           disabled={locked}
           required
         />
