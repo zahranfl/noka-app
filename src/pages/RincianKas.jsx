@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -38,10 +39,24 @@ function RincianKas() {
       [],
     );
   const urut = saldoTransaksi.reverse();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const filteredList = useMemo(() => {
+    if (!searchQuery.trim()) return urut;
+    const q = searchQuery.toLowerCase().trim();
+    return urut.filter((t) => {
+      const ket = (t.keterangan || "").toLowerCase();
+      const kat = (t.kategori || "").toLowerCase();
+      const tgl = formatTgl(t.tanggal).toLowerCase();
+      const jml = String(t.jumlah);
+      return ket.includes(q) || kat.includes(q) || tgl.includes(q) || jml.includes(q);
+    });
+  }, [urut, searchQuery]);
 
   const handleExport = () => {
-    if (!urut.length) return;
-    exportRincianKasToExcel(urut, session?.nama);
+    const dataToExport = searchQuery ? filteredList : urut;
+    if (!dataToExport.length) return;
+    exportRincianKasToExcel(dataToExport, session?.nama);
   };
 
   return (
@@ -69,6 +84,46 @@ function RincianKas() {
           </Button>
         </div>
 
+
+        <div className="search-box-wrap">
+          <input
+            type="text"
+            className="search-box-input"
+            placeholder="Cari transaksi (keterangan, kategori, nominal, tanggal)..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              className="search-box-clear"
+              onClick={() => setSearchQuery("")}
+              aria-label="Hapus pencarian"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+
+        <div className="search-box-wrap">
+          <input
+            type="text"
+            className="search-box-input"
+            placeholder="Cari transaksi (keterangan, kategori, nominal, tanggal)..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              className="search-box-clear"
+              onClick={() => setSearchQuery("")}
+              aria-label="Hapus pencarian"
+            >
+              ✕
+            </button>
+          )}
+        </div>
 
         {loading && <p className="small transactions-notice" role="status">Memuat rincian kas...</p>}
         {error && (
@@ -109,14 +164,14 @@ function RincianKas() {
               </tr>
             </thead>
             <tbody>
-              {urut.length === 0 && (
+              {filteredList.length === 0 && (
                 <tr>
                   <td colSpan={6} className="center muted">
-                    Belum ada transaksi
+                    {searchQuery ? `Tidak ada transaksi yang cocok dengan "${searchQuery}"` : "Belum ada transaksi"}
                   </td>
                 </tr>
               )}
-              {urut.map((t) => (
+              {filteredList.map((t) => (
                 <tr key={t.id}>
                   <td className="pinned-date">{formatTgl(t.tanggal)}</td>
                   <td className="pinned-description transaction-description">
