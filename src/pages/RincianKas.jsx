@@ -85,45 +85,46 @@ function RincianKas() {
         </div>
 
 
-        <div className="search-box-wrap">
-          <input
-            type="text"
-            className="search-box-input"
-            placeholder="Cari transaksi (keterangan, kategori, nominal, tanggal)..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              className="search-box-clear"
-              onClick={() => setSearchQuery("")}
-              aria-label="Hapus pencarian"
-            >
-              ✕
-            </button>
-          )}
-        </div>
-
         <div className="search-box-wrap">
+
           <input
+
             type="text"
+
             className="search-box-input"
+
             placeholder="Cari transaksi (keterangan, kategori, nominal, tanggal)..."
+
             value={searchQuery}
+
             onChange={(e) => setSearchQuery(e.target.value)}
+
           />
+
           {searchQuery && (
+
             <button
+
               type="button"
+
               className="search-box-clear"
+
               onClick={() => setSearchQuery("")}
+
               aria-label="Hapus pencarian"
+
             >
+
               ✕
+
             </button>
+
           )}
+
         </div>
+
+
+
 
         {loading && <p className="small transactions-notice" role="status">Memuat rincian kas...</p>}
         {error && (
